@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 type TasksListProps = {
   tasks: TaskItemState[];
+  onCheck: (id: string) => void;
+  onUncheck: (id: string) => void;
 }
 
 type AddTaskFormProp = {
@@ -36,11 +38,11 @@ const AddTaskForm = ({ onSubmit }: AddTaskFormProp) => {
   </form>
 }
 
-const TasksList = ({ tasks }: TasksListProps) => {
+const TasksList = ({ tasks, onCheck, onUncheck }: TasksListProps) => {
   return (
     <div className="h-[40svh] w-lvw overflow-y-auto">
       {tasks.map(t => (
-        <TaskItem key={t.id} title={t.title} done={t.done} />
+        <TaskItem key={t.id} id={t.id} title={t.title} done={t.done} onCheck={onCheck} onUncheck={onUncheck} />
       ))}
     </div>
   )
@@ -49,6 +51,8 @@ const TasksList = ({ tasks }: TasksListProps) => {
 const TasksContainer = () => {
   const tasks = useTasksStore((state) => state.tasks.sort((a,b) => +a.done - +b.done));
   const addTask = useTasksStore((state) => state.addTask);
+  const handleTaskCheck = useTasksStore((state) => state.handleTaskCheck);
+  const handleTaskUncheck = useTasksStore((state) => state.handleTaskUncheck);
 
   // Это перенесу в экшен после выполнения api запроса на добавление задачи
   const handleAddTask = ({ title }: { title: string }) => {
@@ -56,7 +60,7 @@ const TasksContainer = () => {
   }
 
   return <div>
-    <TasksList tasks={tasks} />
+    <TasksList tasks={tasks} onCheck={handleTaskCheck} onUncheck={handleTaskUncheck} />
     <AddTaskForm onSubmit={handleAddTask} />
   </div>
 }

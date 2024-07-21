@@ -3,8 +3,28 @@
 }
 
 .title {
+    --after-width: 0px;
+
+    position: relative;
     &.done {
-        text-decoration: line-through;
+        --after-width: 100%;
         color: var(--task-done);
     }
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 55%;
+    height: 1px; /* Thickness of the line */
+    background: rgba(215, 217, 206, 1); /* Color of the line */
+    transform: translateY(-50%); /* Center the line vertically */
+    width: var(--after-width);
+}
+
+.title.done::after {
+    background: rgb(133, 133, 133);
+    width: var(--after-width);
 }

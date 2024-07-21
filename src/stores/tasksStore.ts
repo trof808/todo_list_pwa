@@ -14,7 +14,8 @@ type TasksState = {
 }
 
 type TasksActions = {
-    toggleTaskDone: (id: TaskItemState['id']) => void;
+    handleTaskCheck: (id: TaskItemState['id']) => void;
+    handleTaskUncheck: (id: TaskItemState['id']) => void;
     addTask: (payload: TaskItemState) => void;
     removeTask: (id: TaskItemState['id']) => void;
 }
@@ -162,10 +163,16 @@ export const useTasksStore = create<TasksState & TasksActions>((set) => ({
             createdAt: new Date('2023-05-20T11:00:00'),
         },
     ],
-    toggleTaskDone: (id) => set((state) => ({
+    handleTaskCheck: (id) => set((state) => ({
         tasks: state.tasks.map(t => ({
             ...t,
-            done: t.id === id ? !t.done : t.done
+            done: t.id === id ? true : t.done
+        }))
+    })),
+    handleTaskUncheck: (id) => set((state) => ({
+        tasks: state.tasks.map(t => ({
+            ...t,
+            done: t.id === id ? false : t.done
         }))
     })),
     addTask: (payload) => set((state) => ({
