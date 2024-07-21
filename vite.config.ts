@@ -20,7 +20,7 @@ export default defineConfig({
       theme_color: '#242424',
       display: "standalone",
       // start_url: 'http://192.168.1.67:5173/',
-      // scope: "/app/",
+      scope: "index.html",
     },
 
     workbox: {

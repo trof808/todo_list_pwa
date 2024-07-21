@@ -10,9 +10,10 @@ type TaskItemProps = {
     done: boolean;
     onCheck: (id: string) => void;
     onUncheck: (id: string) => void;
+    onRemove: (id: string) => void;
 }
 
-export const TaskItem = ({ id, title, done, onCheck, onUncheck }: TaskItemProps) => {
+export const TaskItem = ({ id, title, done, onCheck, onUncheck, onRemove }: TaskItemProps) => {
     const titleRef = useRef<HTMLSpanElement>(null);
     const [touchXStart, setTouchXStart] = useState(0);
     const [touchYStart, setTouchYStart] = useState(0);
@@ -38,6 +39,10 @@ export const TaskItem = ({ id, title, done, onCheck, onUncheck }: TaskItemProps)
             handleSetLineThroughWidth(0);
         }
     }, [id, done, onUncheck, handleSetLineThroughWidth]);
+
+    const handleRemove = useCallback(() => {
+        onRemove(id);
+    }, [id, onRemove]);
 
     const handleGetLineThroughWidth = useCallback((deltaX: number) => {
         if (done && (titleWidth + deltaX >= 0) && (titleWidth + deltaX <= titleWidth))
@@ -100,6 +105,6 @@ export const TaskItem = ({ id, title, done, onCheck, onUncheck }: TaskItemProps)
         onTouchEnd={handleTouchEnd}
     >
         <span ref={titleRef} className={classNames('title', { 'done': done })}>{title}</span>
-        <img src={RemoveImg} alt="" />
+        <img src={RemoveImg} alt="" onClick={handleRemove} />
     </div>
 }

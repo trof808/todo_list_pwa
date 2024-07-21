@@ -24,6 +24,6 @@ export const AddTaskForm = ({ onSubmit }: AddTaskFormProp) => {
     }
 
     return <form onSubmit={handleSubmit} className='px-12 mt-5 addTaskForm'>
-        <input type="text" onChange={(e) => setTitle(e.target.value)} ref={inputRef} placeholder="Что сделать?.." />
+        <input type="text" onChange={(e) => setTitle(e.target.value)} ref={inputRef} placeholder="Что сделать..?" />
     </form>
 }

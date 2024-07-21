@@ -9,13 +9,22 @@ type TasksListProps = {
   tasks: TaskItemState[];
   onCheck: (id: string) => void;
   onUncheck: (id: string) => void;
+  onRemove: (id: string) => void;
 }
 
-const TasksList = ({ tasks, onCheck, onUncheck }: TasksListProps) => {
+const TasksList = ({ tasks, onCheck, onUncheck, onRemove }: TasksListProps) => {
   return (
-    <div className="h-[40svh] w-lvw overflow-y-auto">
+    <div className="max-h-[40svh] w-lvw overflow-y-auto">
       {tasks.map(t => (
-        <TaskItem key={t.id} id={t.id} title={t.title} done={t.done} onCheck={onCheck} onUncheck={onUncheck} />
+        <TaskItem
+          key={t.id}
+          id={t.id}
+          title={t.title}
+          done={t.done}
+          onCheck={onCheck}
+          onUncheck={onUncheck}
+          onRemove={onRemove}
+        />
       ))}
     </div>
   )
@@ -26,6 +35,7 @@ const TasksContainer = () => {
   const addTask = useTasksStore((state) => state.addTask);
   const handleTaskCheck = useTasksStore((state) => state.handleTaskCheck);
   const handleTaskUncheck = useTasksStore((state) => state.handleTaskUncheck);
+  const handleRemoveTask = useTasksStore((state) => state.removeTask);
 
   // Это перенесу в экшен после выполнения api запроса на добавление задачи
   const handleAddTask = ({ title }: { title: string }) => {
@@ -33,7 +43,12 @@ const TasksContainer = () => {
   }
 
   return <div>
-    <TasksList tasks={tasks} onCheck={handleTaskCheck} onUncheck={handleTaskUncheck} />
+    <TasksList
+      tasks={tasks}
+      onCheck={handleTaskCheck}
+      onUncheck={handleTaskUncheck}
+      onRemove={handleRemoveTask}
+    />
     <AddTaskForm onSubmit={handleAddTask} />
   </div>
 }
