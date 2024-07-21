@@ -1,0 +1,6 @@
+.addTaskForm > input {
+    border-radius: 0;
+    border-bottom: 1px dashed rgba(164, 164, 164, 0.62);
+    background-color: transparent;
+    outline: none;
+}

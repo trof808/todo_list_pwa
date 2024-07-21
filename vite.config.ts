@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react(), VitePWA({
     registerType: 'prompt',
-    injectRegister: 'inline',
+    injectRegister: 'script',
 
     pwaAssets: {
       disabled: false,
@@ -18,7 +18,8 @@ export default defineConfig({
       short_name: 'life_tracker_react_pwa',
       description: 'life_tracker_react_pwa',
       theme_color: '#242424',
-      start_url: 'http://192.168.1.67:5173/',
+      display: "standalone",
+      // start_url: 'http://192.168.1.67:5173/',
       // scope: "/app/",
     },
 

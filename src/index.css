@@ -58,13 +58,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.addTaskForm > input {
-  border-radius: 0;
-  border-bottom: 1px solid rgba(215, 217, 206, 62%);
-  background-color: transparent;
-  outline: none;
-}
-
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
