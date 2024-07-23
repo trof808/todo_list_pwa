@@ -1,4 +1,4 @@
-import RemoveImg from '../../assets/remove.svg';
+import RemoveImg from '../../../assets/remove.svg';
 import classNames from "classnames";
 
 import './TaskItem.css';
@@ -78,7 +78,7 @@ export const TaskItem = ({ id, title, done, onCheck, onUncheck, onRemove }: Task
         }
     }, [titleRef, touchXStart, touchYStart, handleGetLineThroughWidth, handleSetLineThroughWidth]);
 
-    const handleTouchEnd = useCallback<TouchEventHandler>((e) => {
+    const handleTouchEnd = useCallback<TouchEventHandler>(() => {
         if (titleRef.current) {
             if (!done) {
                 const lineTroughWidth = titleRef.current.style.getPropertyValue('--after-width');
