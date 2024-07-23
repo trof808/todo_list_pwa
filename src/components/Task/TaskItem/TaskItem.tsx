@@ -4,10 +4,13 @@ import classNames from "classnames";
 import './TaskItem.css';
 import { TouchEventHandler, useCallback, useRef, useState } from 'react';
 
-type TaskItemProps = {
+export type TaskItemData = {
     id: string;
     title: string;
     done: boolean;
+}
+
+type TaskItemProps = TaskItemData & {
     onCheck: (id: string) => void;
     onUncheck: (id: string) => void;
     onRemove: (id: string) => void;

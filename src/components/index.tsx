@@ -1,4 +1,5 @@
-import { TaskItem } from "./TaskItem";
-import { AddTaskForm } from "./TaskForm";
+import { TaskItem } from "./Task/TaskItem";
+import { AddTaskForm } from "./Task/TaskForm";
+import { TasksList } from "./Task/TasksList";
 
-export { TaskItem, AddTaskForm };
+export { TaskItem, AddTaskForm, TasksList };
