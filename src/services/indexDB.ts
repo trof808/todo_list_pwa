@@ -11,15 +11,6 @@ async function createStoresInDB() {
                 db.createObjectStore(DATABASE_STORES.TASKS, { keyPath: 'id', autoIncrement: true });
             }
         },
-        blocked(currentVersion, blockedVersion, event) {
-            console.log('blocked: ', event);
-        },
-        blocking(currentVersion, blockedVersion, event) {
-            console.log('blocking: ', event);
-        },
-        terminated() {
-            console.log('terminated')
-        },
     });
 
     return dbPromise;
