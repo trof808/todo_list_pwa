@@ -48,16 +48,27 @@ export async function deleteTaskInDb({ id }: Pick<DbTask, 'id'>) {
     }
 }
 
-export async function updateTaskInDb({ title, createdAt, done, id }: Partial<DbTask>) {
+type DbTaskUpdatePayload = Partial<Omit<DbTask, 'createdAt'>> & { id: DbTask['id'] };
+
+export async function updateTaskInDb({ title, done, id }: DbTaskUpdatePayload) {
     const db = await createStoresInDB();
     const transaction = db.transaction(DATABASE_STORES.TASKS, 'readwrite')
     const store = transaction.objectStore(DATABASE_STORES.TASKS);
 
+    const task = await store.get(id);
+
+    const newTask = {
+        ...task,
+        title: title !== undefined ? title : task.title,
+        done: done !== undefined ? done : task.done,
+    }
+
     try {
-        await store.put({ title, createdAt, done }, id);
+        await store.put(newTask);
         await transaction.done;
         return Promise.resolve({ message: 'Задача обновлена' })
     } catch(e) {
+        console.error(e);
         return Promise.reject({ message: 'Не удалось обновить задачу' })
     }
 }
