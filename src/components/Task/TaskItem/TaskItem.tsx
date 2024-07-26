@@ -3,17 +3,18 @@ import classNames from "classnames";
 
 import './TaskItem.css';
 import { TouchEventHandler, useCallback, useRef, useState } from 'react';
+import { TaskId } from '../../../stores/tasksStore';
 
 export type TaskItemData = {
-    id: string;
+    id: TaskId;
     title: string;
     done: boolean;
 }
 
 type TaskItemProps = TaskItemData & {
-    onCheck: (id: string) => void;
-    onUncheck: (id: string) => void;
-    onRemove: (id: string) => void;
+    onCheck: (id: TaskId) => void;
+    onUncheck: (id: TaskId) => void;
+    onRemove: (id: TaskId) => void;
 }
 
 export const TaskItem = ({ id, title, done, onCheck, onUncheck, onRemove }: TaskItemProps) => {

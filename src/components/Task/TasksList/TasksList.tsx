@@ -1,10 +1,11 @@
+import { TaskId } from "../../../stores/tasksStore";
 import { TaskItem, TaskItemData } from "../TaskItem/TaskItem";
 
 type TasksListProps = {
     tasks: TaskItemData[];
-    onCheck: (id: string) => void;
-    onUncheck: (id: string) => void;
-    onRemove: (id: string) => void;
+    onCheck: (id: TaskId) => void;
+    onUncheck: (id: TaskId) => void;
+    onRemove: (id: TaskId) => void;
 }
 
 export const TasksList = ({ tasks, onCheck, onUncheck, onRemove }: TasksListProps) => {
