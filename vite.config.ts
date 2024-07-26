@@ -14,13 +14,11 @@ export default defineConfig({
     },
 
     manifest: {
-      name: 'life_tracker_react_pwa',
-      short_name: 'life_tracker_react_pwa',
-      description: 'life_tracker_react_pwa',
+      name: 'Life tracker',
+      short_name: 'Life tracker',
+      description: 'Life tracker',
       theme_color: '#242424',
       display: "standalone",
-      // start_url: 'http://192.168.1.67:5173/',
-      scope: "index.html",
     },
 
     workbox: {
