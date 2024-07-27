@@ -11,6 +11,7 @@
     --after-width: 0px;
     --task-x-position: 0px;
     transform: translateX(var(--task-x-position));
+    position: relative;
 
     &.done {
         --after-width: 100%;
