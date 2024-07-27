@@ -2,13 +2,22 @@
     --task-done: rgba(215, 217, 206, 62%);
 }
 
+.taskItem {
+    position: relative;
+    background-color: var(--background-color);
+}
+
 .title {
     --after-width: 0px;
+    --task-x-position: 0px;
+    transform: translateX(var(--task-x-position));
 
-    position: relative;
     &.done {
         --after-width: 100%;
         color: var(--task-done);
+    }
+    &.smooth {
+        transition: all 1s;
     }
 }
 
@@ -27,4 +36,17 @@
 .title.done::after {
     background: rgb(133, 133, 133);
     width: var(--after-width);
+}
+
+.removeImg {
+    --img-remove-x-position: -30px;
+
+    position: absolute;
+    right: var(--img-remove-x-position);
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &.smooth {
+        transition: all 1s;
+    }
 }

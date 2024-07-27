@@ -10,7 +10,7 @@ type TasksListProps = {
 
 export const TasksList = ({ tasks, onCheck, onUncheck, onRemove }: TasksListProps) => {
     return (
-        <div className="max-h-[40svh] w-lvw overflow-y-auto">
+        <div className="max-h-[40svh] w-lvw overflow-y-auto overflow-x-hidden">
             {tasks.map(t => (
                 <TaskItem
                     key={t.id}
