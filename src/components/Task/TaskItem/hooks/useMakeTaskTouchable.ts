@@ -4,6 +4,7 @@ import { TaskItemData, TaskItemEvents } from "../TaskItem";
 type Props = Omit<TaskItemData, 'title'> & TaskItemEvents;
 
 const IMG_BASE_POSITION = -30;
+const TASK_POSITION_TO_BE_REMOVED = -80;
 
 export const useMakeTaskTouchable = ({ id, done, onCheck, onUncheck, onRemove }: Props) => {
     const titleRef = useRef<HTMLSpanElement>(null);
@@ -25,8 +26,8 @@ export const useMakeTaskTouchable = ({ id, done, onCheck, onUncheck, onRemove }:
             titleRef.current.classList.remove('smooth');
             imgRef.current.classList.remove('smooth');
             titleRef.current.style.setProperty('--task-x-position', `${value}px`);
-            if (value < -50)
-                imgRef.current.style.setProperty('--img-remove-x-position', `${IMG_BASE_POSITION - value * 1.5}px`);
+            if (value < TASK_POSITION_TO_BE_REMOVED)
+                imgRef.current.style.setProperty('--img-remove-x-position', `${IMG_BASE_POSITION - value * 1.2}px`);
             else
                 imgRef.current.style.setProperty('--img-remove-x-position', `${IMG_BASE_POSITION - value}px`);
         }
@@ -121,7 +122,7 @@ export const useMakeTaskTouchable = ({ id, done, onCheck, onUncheck, onRemove }:
             const taskMoveValue = titleRef.current.style.getPropertyValue('--task-x-position');
             const moveValue = parseInt(taskMoveValue);
             console.log(moveValue);
-            if (moveValue < -50) {
+            if (moveValue < TASK_POSITION_TO_BE_REMOVED) {
                 onRemove(id);
             } else {
                 handleResetTaskPosition();
